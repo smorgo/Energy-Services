@@ -1,5 +1,7 @@
 # ImmersionController
 
+You can find the container image on [Docker Hub](https://hub.docker.com/repository/docker/smorgo/immersioncontroller).
+
 This service communicates with the Shelley relay using MQTT. The relay must be configured (via the web interface, Developer Settings) to use MQTT. Note that the relay cannot connect to the Shelley cloud service when it is configured to use MQTT locally.
 
 The service is configured using the following environment variables. If you use the supplied deployment YAML (in the /Deploy folder), you will see the corresponding Kubernetes ConfigMap properties that map to these values.

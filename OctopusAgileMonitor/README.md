@@ -1,4 +1,7 @@
 # OctopusAgileMonitor
+
+You can find the container image on [Docker Hub](https://hub.docker.com/repository/docker/smorgo/octopusagilemonitor).
+
 This service is designed to poll the Octopus Agile Rate API and then publish the real-time current rate via an MQTT message. By default, it sends one message per minute, even though the rate only changes every thirty minutes. This is intended to improve reliability, in case messages are lost or services are restarted.
 
 The service is configured using the following environment variables. If you use the supplied deployment YAML (in the /Deploy folder), you will see the corresponding Kubernetes ConfigMap properties that map to these values.
