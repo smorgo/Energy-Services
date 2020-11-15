@@ -17,5 +17,5 @@ Note that in the current implementation, MQTT credentials are not provided to th
 |RELAY_CONTROL_TOPIC |relay_mqtt_topic|The topic that carries commands to the Shelley relay. Find this from the relay configuration.|
 |ON_THRESHOLD        |on_threshold|A decimal number (as a string). When the current rate falls below this value, the relay is turned on. Default is 0p/kWh.|
 |OFF_THRESHOLD       |off_threshold|A decimal number (as a string). When the current rate rises above this value, the relay is turned off. Default is to use the value of ON_THRESHOLD.|
-|MINIMUM_STEADY_TIME_SECONDS|minimum_steady_time_seconds|A integer (as a string). This value is the minimum number of seconds that must elapse between state changes. It is intended to ensure that the relay is not toggled too quickly. Default is 300 (5 minutes)|
+|MINIMUM_STEADY_TIME_SECONDS|minimum_steady_time_seconds|An integer (as a string). This value is the minimum number of seconds that must elapse between state changes. It is intended to ensure that the relay is not toggled too quickly. Default is 300 (5 minutes)|
 
