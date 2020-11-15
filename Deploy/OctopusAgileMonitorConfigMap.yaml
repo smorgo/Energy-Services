@@ -1,0 +1,19 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: octopus-agile-monitor-configmap
+  namespace: energy-services 
+data:
+  mqtt_broker: "<dns name of MQTT broker>"
+  mqtt_port: "1883"
+  mqtt_user: "<username>"
+  mqtt_password: "<password>"
+  mqtt_topic: "agile/rate"
+  agile_tariff_code: "E-1R-AGILE-18-02-21-E"
+  agile_product_code: "AGILE-18-02-21"
+  agile_api_key: "<api key from Octopus website>"
+  retrieve_interval_seconds: "3600"
+  retrieve_duration_hours: "3"
+  publish_interval_seconds: "60"
+  loop_interval_seconds: "10"
+

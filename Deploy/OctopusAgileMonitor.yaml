@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: energy-services
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octopus-agile-monitor
+  namespace: energy-services
+  labels:
+    app: octopus-agile-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octopus-agile-monitor
+  template:
+    metadata:
+      labels:
+        app: octopus-agile-monitor
+    spec:
+      containers:
+        - name: octopus-agile-monitor
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MQTT_BROKER
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: mqtt_broker
+          - name: CURRENT_RATE_TOPIC
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: mqtt_topic
+          - name: AGILE_PRODUCT_CODE
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: agile_product_code
+          - name: AGILE_TARIFF_CODE
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: agile_tariff_code
+          - name: AGILE_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: agile_api_key
+          - name: RETRIEVE_INTERVAL_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: retrieve_interval_seconds
+          - name: RETRIEVE_DURATION_HOURS
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: retrieve_duration_hours
+          - name: PUBLISH_INTERVAL_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: publish_interval_seconds
+          - name: LOOP_INTERVAL_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                name: octopus-agile-monitor-configmap
+                key: loop_interval_seconds
+          image: smorgo/octopusagilemonitor:latest
+          resources:
+            limits:
+              memory: "24Mi"
+              cpu: "100m"
+            requests:
+              memory: "12Mi"
+              cpu: "16m"
+    
