@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immersion-controller
+  namespace: energy-services
+  labels:
+    app: immersion-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immersion-controller
+  template:
+    metadata:
+      labels:
+        app: immersion-controller
+    spec:
+      containers:
+        - name: immersion-controller
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: RATE_MQTT_BROKER
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: rate_mqtt_broker
+          - name: RELAY_MQTT_BROKER
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: relay_mqtt_broker
+          - name: CURRENT_RATE_TOPIC
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: rate_mqtt_topic
+          - name: RELAY_CONTROL_TOPIC
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: relay_mqtt_topic
+          - name: ON_THRESHOLD 
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: on_threshold
+          - name: OFF_THRESHOLD
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: off_threshold
+          - name: MINIMUM_STEADY_TIME_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                name: immersion-controller-configmap
+                key: minimum_steady_time_seconds
+          image: smorgo/immersioncontroller:latest
+          resources:
+            limits:
+              memory: "24Mi"
+              cpu: "100m"
+            requests:
+              memory: "12Mi"
+              cpu: "16m"
+    
