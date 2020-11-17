@@ -12,6 +12,9 @@ This service is designed to poll the Octopus Agile Rate API and then publish the
 I designed this service to automatically control my electric water heater, turning it on when the electricity rate drops before a threshold value (usually 0p/kWh) and turning it off when the rate rises again.
 The service is more generic than it sounds. It drives a Shelley 1PM WiFi relay and warrants being renamed.
 
+## [TasmotaController](/TasmotaController)
+Functionally, this is the same as the ImmersionController service, but integrates with a smart WiFi switch running the [Tasmota](https://github.com/ct-Open-Source/tuya-convert) firmware.
+
 ## Deployment
 The Dockerfiles included are to build 32-bit ARM containers, which will run under Kubernetes (actually, k3s). If you're targeting a different platform, you'll likely need different Dockerfiles.
 
@@ -22,4 +25,6 @@ Apply the files in the following order:
 * OctopusAgileMonitor.yaml
 * ImmersionControllerConfigMap.yaml
 * ImmersionController.yaml
+* TasmotaControllerConfigMap.yaml
+* TasmotaController.yaml
 
