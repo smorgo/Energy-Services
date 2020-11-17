@@ -1,0 +1,20 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: tasmota-controller-configmap
+  namespace: energy-services 
+data:
+  rate_mqtt_broker: "<dns name of MQTT broker>"
+  rate_mqtt_port: "1883"
+  rate_mqtt_user: "<username>"
+  rate_mqtt_password: "<password>"
+  rate_mqtt_topic: "agile/rate"
+  relay_mqtt_broker: "<dns name of MQTT broker>"
+  relay_mqtt_port: "1883"
+  relay_mqtt_user: "<username>"
+  relay_mqtt_password: "<password>"
+  relay_mqtt_topic: "cmnd/<device name>/POWER"
+  on_threshold: "0"
+  off_threshold: "0"
+  minimum_steady_time_seconds: "300"
+
