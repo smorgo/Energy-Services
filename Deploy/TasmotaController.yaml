@@ -57,7 +57,7 @@ spec:
               configMapKeyRef:
                 name: tasmota-controller-configmap
                 key: minimum_steady_time_seconds
-          image: smorgo/immersioncontroller:latest
+          image: smorgo/tasmotacontroller:latest
           resources:
             limits:
               memory: "24Mi"
